@@ -1,0 +1,12 @@
+{
+  "name": "AwesomeProject",
+  "displayName": "AwesomeProject",
+  "expo": {
+    "name": "My App",
+    "description": "",
+    "slug": "my-app",
+    "android": {
+      "package": "com.saadturky.myapp"
+    }
+  }
+}

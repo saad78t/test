@@ -1,0 +1,59 @@
+stages:
+  - dockerizing
+  - deploy
+  - test
+  
+# dockerfile:
+  # image: gitlab/dind:latest
+  # stage: dockerizing
+  # script:
+    # - docker build -t expo-android .
+    # - echo "dockerized successfully"
+
+# to test jaxber react-native
+pages:
+  cache:
+    paths:
+    - ./node_modules/
+    
+  image: node:14.15.4 # can be upgraded, depending on your node version used
+  stage: deploy
+  script:
+  - npm install
+  - npm install -g expo-cli
+  - expo build:web
+  - mkdir public
+  - mv web-build/* public/
+  artifacts:
+    paths:
+    - public # mandatory, other folder won't work
+  only:
+  - master # or dev, the branch you want to publish 
+  
+# run_robot:
+  # image: python
+  # stage: test
+  # before_script:
+    # - "apt update"
+    # - "apt install unzip"
+    # - "pip install robotframework-seleniumlibrary"
+    # - "wget https://chromedriver.storage.googleapis.com/86.0.4240.22/chromedriver_linux64.zip"
+    # - "unzip chromedriver_linux64.zip"
+    # - "chmod +x chromedriver"
+    # - "mv -f chromedriver /usr/bin/chromedriver"
+    # - "wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb"
+    # - "apt install -y ./google-chrome-stable_current_amd64.deb"
+    # - "wget https://github.com/mozilla/geckodriver/releases/download/v0.28.0/geckodriver-v0.28.0-linux64.tar.gz"
+    # - "tar xvzf geckodriver-v0.28.0-linux64.tar.gz"
+    # - "chmod +x geckodriver"
+    # - "mv -f geckodriver /usr/bin/geckodriver"
+    # - "wget https://ftp.mozilla.org/pub/firefox/releases/57.0/linux-x86_64/en-US/firefox-57.0.tar.bz2"
+    # - "tar -xvf firefox-57.0.tar.bz2"
+    # - "apt-get install firefox-esr"
+  # script:
+    # - "robot Tests/productionnative.robot"
+  # artifacts:
+    # paths:
+    # - /builds/saadturky/jaxber-react-native/report.html
+    # - /builds/saadturky/jaxber-react-native/log.html
+    # - /builds/saadturky/jaxber-react-native/output.xml

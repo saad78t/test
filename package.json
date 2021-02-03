@@ -7,7 +7,10 @@
     "ios": "react-native run-ios",
     "start": "react-native start",
     "test": "jest",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "deploy": "gl-pages -d web-build",
+    "predeploy": "expo build:web",
+    "build": "react-native build"
   },
   "dependencies": {
     "expo": "^40.0.1",
@@ -17,10 +20,6 @@
     "react-native-web": "^0.14.11"
   },
   "homepage": "https://saadturky.gitlab.io/react-native-cli/",
-  "scripts": {
-        "deploy": "gl-pages -d web-build",
-        "predeploy": "expo build:web"
-    },
   "devDependencies": {
     "@babel/core": "^7.8.4",
     "@babel/runtime": "^7.8.4",

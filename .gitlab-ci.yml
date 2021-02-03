@@ -21,9 +21,10 @@ pages:
   script:
   - npm install
   - npm install -g expo-cli
-  - expo build:web
+  #- expo build:web
+  - npm run android
   - mkdir public
-  - mv web-build/* public/
+  - mv android/* public/
   artifacts:
     paths:
     - public # mandatory, other folder won't work
